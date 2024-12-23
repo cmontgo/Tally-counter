@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <style>
+    body {
+      margin: 0;
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      font-family: system-ui, sans-serif;
+    }
+    
+    .tally-section {
+      flex: 1;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background: #f0f0f0;
+      padding: 2rem;
+      gap: 1rem;
+    }
+    
+    .tally-section.upside-down {
+      transform: rotate(180deg);
+      background: #e0e0e0;
+    }
+    
+    .tally {
+      font-size: 4rem;
+      font-weight: bold;
+      min-width: 150px;
+      text-align: center;
+    }
+    
+    button {
+      font-size: 2rem;
+      padding: 1rem 2rem;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: transform 0.1s;
+    }
+    
+    button:active {
+      transform: scale(0.95);
+    }
+    
+    .minus {
+      background: #ff4444;
+      color: white;
+    }
+    
+    .plus {
+      background: #44ff44;
+      color: black;
+    }
+  </style>
+</head>
+<body>
+  <div class="tally-section upside-down">
+    <button class="minus" onclick="updateTally('top', -1)">-</button>
+    <div id="top-tally" class="tally">0</div>
+    <button class="plus" onclick="updateTally('top', 1)">+</button>
+  </div>
+  
+  <div class="tally-section">
+    <button class="minus" onclick="updateTally('bottom', -1)">-</button>
+    <div id="bottom-tally" class="tally">0</div>
+    <button class="plus" onclick="updateTally('bottom', 1)">+</button>
+  </div>
+
+  <script>
+    const tallies = {
+      top: 0,
+      bottom: 0
+    };
+    
+    function updateTally(section, amount) {
+      tallies[section] += amount;
+      document.getElementById(`${section}-tally`).textContent = tallies[section];
+    }
+  </script>
+</body>
+</html>
